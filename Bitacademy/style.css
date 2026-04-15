@@ -1,0 +1,113 @@
+/* =============================================
+   BITACADEMY – Estilo Global
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&display=swap');
+
+/* --- Variáveis (mantidas do quiz) --- */
+:root {
+  --cor-bg: #0f0f1a;
+  --cor-card: #1a1a2e;
+  --cor-borda: #2a2a4a;
+  --cor-texto: #e8e8f0;
+  --cor-subtexto: #9898b8;
+  --cor-destaque: #6366f1;
+  --raio: 16px;
+  --sombra: 0 8px 32px rgba(0,0,0,0.4);
+  --fonte: 'Nunito', sans-serif;
+}
+
+/* --- Reset --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Body --- */
+body {
+  font-family: var(--fonte);
+  background: var(--cor-bg);
+  color: var(--cor-texto);
+  padding: 20px;
+}
+
+/* ─── HEADER ─── */
+header {
+  text-align: center;
+  padding: 30px 20px;
+  background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.1));
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+header p {
+  color: var(--cor-subtexto);
+  margin-top: 8px;
+}
+
+/* ─── NAV ─── */
+nav {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+nav a {
+  display: inline-block;
+  margin: 6px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  color: var(--cor-texto);
+  border: 2px solid var(--cor-borda);
+  background: rgba(255,255,255,0.04);
+  transition: all 0.2s ease;
+}
+
+nav a:hover {
+  background: rgba(99,102,241,0.15);
+  border-color: var(--cor-destaque);
+  transform: translateY(-2px);
+}
+
+/* ─── MAIN / CONTEÚDO ─── */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+section {
+  background: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: 24px;
+  box-shadow: var(--sombra);
+}
+
+/* ─── TEXTOS ─── */
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+
+p {
+  color: var(--cor-subtexto);
+  line-height: 1.6;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  text-align: center;
+  margin-top: 30px;
+  padding: 16px;
+  color: var(--cor-subtexto);
+  font-size: 0.9rem;
+}

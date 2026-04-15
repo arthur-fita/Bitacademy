@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz de Matemática – Bitacademy</title>
+  <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+
+  <!-- Para usar em outra matéria: troque o valor de data-materia abaixo -->
+  <!-- Opções: matematica | portugues | ciencias | historia | geografia | filosofia | artes | ingles -->
+
+  <div id="quiz-app" data-materia="portugues"></div>
+
+  <script src="quiz.js"></script>
+  <script>
+    const materia = document.getElementById('quiz-app').dataset.materia;
+    iniciarQuiz('quiz-app', materia);
+  </script>
+
+</body>
+</html>
