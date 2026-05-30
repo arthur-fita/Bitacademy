@@ -109,6 +109,99 @@ const QUIZZES = {
         correta: 2
       }
     ]
+  },
+
+  historia: {
+    titulo: "História",
+    emoji: "📜",
+    cor: "#B45309",
+    perguntas: [
+      {
+        pergunta: "Qual acontecimento é considerado um marco inicial da Idade Moderna?",
+        opcoes: ["Queda de Constantinopla", "Revolução Francesa", "Primeira Guerra Mundial", "Independência do Brasil"],
+        correta: 0,
+        explicação: "A queda de Constantinopla, em 1453, é frequentemente usada como marco de transição para a Idade Moderna."
+      },
+      {
+        pergunta: "O Renascimento valorizou principalmente:",
+        opcoes: ["O teocentrismo medieval", "A censura científica", "O humanismo e a razão", "O isolamento cultural"],
+        correta: 2
+      },
+      {
+        pergunta: "Em que ano ocorreu a Independência do Brasil?",
+        opcoes: ["1500", "1789", "1822", "1889"],
+        correta: 2
+      }
+    ]
+  },
+
+  geografia: {
+    titulo: "Geografia",
+    emoji: "🌎",
+    cor: "#0891B2",
+    perguntas: [
+      {
+        pergunta: "Qual camada da Terra é formada por placas tectônicas?",
+        opcoes: ["Núcleo interno", "Litosfera", "Manto inferior", "Atmosfera"],
+        correta: 1
+      },
+      {
+        pergunta: "O clima de uma região é definido principalmente pela análise:",
+        opcoes: ["De um único dia", "De poucos minutos", "De longos períodos", "Apenas da vegetação"],
+        correta: 2
+      },
+      {
+        pergunta: "Bacia hidrográfica é:",
+        opcoes: ["Uma área drenada por um rio principal e seus afluentes", "Um tipo de montanha", "Uma formação de nuvens", "Um movimento das marés"],
+        correta: 0
+      }
+    ]
+  },
+
+  artes: {
+    titulo: "Artes",
+    emoji: "🎨",
+    cor: "#DB2777",
+    perguntas: [
+      {
+        pergunta: "Qual movimento artístico valorizou a luz natural e as impressões visuais do momento?",
+        opcoes: ["Barroco", "Impressionismo", "Cubismo", "Surrealismo"],
+        correta: 1
+      },
+      {
+        pergunta: "A perspectiva, nas artes visuais, é usada para:",
+        opcoes: ["Representar profundidade", "Apagar cores", "Criar sons", "Medir temperatura"],
+        correta: 0
+      },
+      {
+        pergunta: "A Semana de Arte Moderna no Brasil ocorreu em:",
+        opcoes: ["1822", "1889", "1922", "1964"],
+        correta: 2
+      }
+    ]
+  },
+
+  ingles: {
+    titulo: "Inglês",
+    emoji: "🗣️",
+    cor: "#2563EB",
+    perguntas: [
+      {
+        pergunta: "Qual alternativa está no Simple Past?",
+        opcoes: ["I study every day", "I studied yesterday", "I am studying now", "I will study tomorrow"],
+        correta: 1
+      },
+      {
+        pergunta: "A tradução mais adequada de 'false friend' em estudo de idiomas é:",
+        opcoes: ["Amigo falso", "Palavra parecida com significado diferente", "Gíria informal", "Verbo irregular"],
+        correta: 1
+      },
+      {
+        pergunta: "Qual frase está correta?",
+        opcoes: ["She are happy", "They is students", "He am tired", "We are ready"],
+        correta: 3
+      }
+    ]
   }
 };
 
@@ -273,14 +366,15 @@ class QuizUI {
   renderResultado() {
     const total = this.engine.perguntas.length;
     const score = this.engine.pontuacao;
-    const percent = (score / total) * 100;
+    const percent = Math.round((score / total) * 100);
 
     this.container.innerHTML = `
       <div class="result-card">
         <div class="score-circle">${score}/${total}</div>
-        <h3>${percent >= 70 ? "Desempenho de Mestre!" : "Bom esforço!"}</h3>
-        <p>Você acertou ${percent}% das questões de nível avançado.</p>
-        <button onclick="location.reload()" class="btn-primary">Tentar Outra Matéria</button>
+        <h3>${percent >= 70 ? "Ótimo desempenho!" : "Bom esforço!"}</h3>
+        <p>Você acertou ${percent}% das questões.</p>
+        <button onclick="location.reload()" class="btn-primary">Tentar novamente</button>
+        <a href="../Bitacademy.html" class="btn-secondary">Voltar ao portal</a>
       </div>
     `;
   }
