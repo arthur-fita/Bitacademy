@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar - Bitacademy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+    <main class="login-shell">
+        <section class="login-card" aria-labelledby="login-titulo">
+            <div class="login-brand">
+                <span class="brand-mark">BA</span>
+                <div>
+                    <p class="eyebrow">Portal de acesso</p>
+                    <h1 id="login-titulo">Entrar no BitAcademy</h1>
+                </div>
+            </div>
+
+            <form class="login-form" action="Bitacademy.html">
+                <label for="tipo">Tipo de conta</label>
+                <select id="tipo" name="tipo">
+                    <option>Aluno</option>
+                    <option>Professor</option>
+                </select>
+
+                <label for="email">E-mail ou usuário</label>
+                <input type="text" id="email" name="email" placeholder="seunome@escola.com" required>
+
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+
+                <div class="login-options">
+                    <label class="check-option">
+                        <input type="checkbox" name="lembrar">
+                        <span>Lembrar meu acesso</span>
+                    </label>
+                    <a href="Bitacademy.html">Entrar como visitante</a>
+                </div>
+
+                <button type="submit">Entrar</button>
+            </form>
+        </section>
+
+        <aside class="access-panel" aria-label="Informações sobre o acesso">
+            <h2>Um acesso para aprender e ensinar</h2>
+            <p>Alunos entram para estudar conteúdos e responder quizzes. Professores, futuramente, poderão acompanhar turmas, atividades e desempenho dos estudantes.</p>
+            <ul>
+                <li>Ambiente simples para estudantes</li>
+                <li>Preparado para o modo professor</li>
+                <li>Acesso rápido ao portal de conteúdos</li>
+            </ul>
+        </aside>
+    </main>
+</body>
+</html>
