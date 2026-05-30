@@ -34,6 +34,18 @@ body {
   padding: 20px;
 }
 
+@keyframes aparecerSuave {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ─── HEADER ─── */
 header {
   text-align: center;
@@ -43,6 +55,7 @@ header {
   border-radius: var(--raio);
   box-shadow: var(--sombra);
   margin-bottom: 20px;
+  animation: aparecerSuave 0.55s ease both;
 }
 
 header h1 {
@@ -59,6 +72,7 @@ header p {
 nav {
   text-align: center;
   margin-bottom: 20px;
+  animation: aparecerSuave 0.55s ease 0.08s both;
 }
 
 nav a {
@@ -93,6 +107,23 @@ section {
   padding: 24px;
   box-shadow: var(--sombra);
   margin-bottom: 18px;
+  animation: aparecerSuave 0.55s ease both;
+}
+
+section:nth-of-type(1) {
+  animation-delay: 0.16s;
+}
+
+section:nth-of-type(2) {
+  animation-delay: 0.24s;
+}
+
+section:nth-of-type(3) {
+  animation-delay: 0.32s;
+}
+
+section:nth-of-type(4) {
+  animation-delay: 0.4s;
 }
 
 /* ─── TEXTOS ─── */
@@ -133,6 +164,15 @@ p {
   border-radius: var(--raio);
   box-shadow: var(--sombra);
   padding: 28px;
+  animation: aparecerSuave 0.55s ease both;
+}
+
+.login-card {
+  animation-delay: 0.08s;
+}
+
+.access-panel {
+  animation-delay: 0.18s;
 }
 
 .login-brand {
@@ -169,6 +209,38 @@ p {
 .login-form {
   display: grid;
   gap: 12px;
+}
+
+.login-form > * {
+  animation: aparecerSuave 0.45s ease both;
+}
+
+.login-form > *:nth-child(1) {
+  animation-delay: 0.18s;
+}
+
+.login-form > *:nth-child(2) {
+  animation-delay: 0.22s;
+}
+
+.login-form > *:nth-child(3) {
+  animation-delay: 0.26s;
+}
+
+.login-form > *:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.login-form > *:nth-child(5) {
+  animation-delay: 0.34s;
+}
+
+.login-form > *:nth-child(6) {
+  animation-delay: 0.38s;
+}
+
+.login-form > *:nth-child(7) {
+  animation-delay: 0.42s;
 }
 
 .login-form label {
@@ -273,6 +345,18 @@ footer {
   padding: 16px;
   color: var(--cor-subtexto);
   font-size: 0.9rem;
+  animation: aparecerSuave 0.55s ease 0.48s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 @media (max-width: 760px) {
