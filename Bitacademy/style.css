@@ -811,6 +811,16 @@ h3 {
   align-items: center;
 }
 
+.math-game-callout {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+  background:
+    linear-gradient(135deg, rgba(250,204,21,0.13), rgba(34,211,238,0.08)),
+    var(--cor-card);
+}
+
 .home-page .quiz-callout {
   padding: 26px;
 }
@@ -1275,6 +1285,11 @@ footer {
   }
 
   .quiz-callout {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .math-game-callout {
     align-items: flex-start;
     flex-direction: column;
   }

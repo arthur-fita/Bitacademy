@@ -272,6 +272,7 @@ class QuizEngine {
 class QuizUI {
   constructor(containerId, materia) {
     this.container = document.getElementById(containerId);
+    this.materia = materia;
     this.engine = new QuizEngine(materia);
     this.init();
   }
@@ -363,6 +364,15 @@ class QuizUI {
     }
   }
 
+  escapeHtml(value) {
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
   renderResultado() {
     const total = this.engine.perguntas.length;
     const score = this.engine.pontuacao;
@@ -370,12 +380,26 @@ class QuizUI {
     const user = window.BitAcademyAuth?.getCurrentUser();
 
     window.BitAcademyAuth?.recordQuizResult({
-      materia: this.engine.materiaInfo.titulo.toLowerCase(),
+      materia: this.materia,
       titulo: this.engine.materiaInfo.titulo,
       score,
       total,
       percent
     });
+
+    const ranking = window.BitAcademyAuth?.getQuizRanking(this.materia, 5) || [];
+    const rankingHtml = ranking.length ? `
+      <div class="quiz-ranking">
+        <h4>Ranking deste quiz</h4>
+        ${ranking.map((item, index) => `
+          <article>
+            <span>${index + 1}</span>
+            <strong>${this.escapeHtml(item.playerName)}</strong>
+            <b>${item.score}/${item.total}</b>
+          </article>
+        `).join("")}
+      </div>
+    ` : "";
 
     this.container.innerHTML = `
       <div class="result-card">
@@ -383,6 +407,7 @@ class QuizUI {
         <h3>${percent >= 70 ? "Ótimo desempenho!" : "Bom esforço!"}</h3>
         <p>Você acertou ${percent}% das questões.</p>
         <p>${user ? "Resultado salvo no seu perfil." : "Entre ou cadastre-se para salvar seus resultados."}</p>
+        ${rankingHtml}
         <button onclick="location.reload()" class="btn-primary">Tentar novamente</button>
         <a href="../Bitacademy.html" class="btn-secondary">Voltar ao portal</a>
       </div>

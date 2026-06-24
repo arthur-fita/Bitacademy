@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matemática Infinita - BitAcademy</title>
+    <link rel="stylesheet" href="jogos.css">
+</head>
+<body>
+    <main class="game-shell">
+        <section class="game-panel" aria-labelledby="game-title">
+            <div class="game-top">
+                <a class="back-link" href="../matematica.html">Voltar para Matemática</a>
+                <span data-auth-status></span>
+            </div>
+
+            <header class="game-hero">
+                <div>
+                    <p class="eyebrow">Modo infinito</p>
+                    <h1 id="game-title">Matemática Infinita</h1>
+                    <p>Resolva o máximo de contas antes do tempo acabar. Acertos dão tempo extra, erros tiram tempo.</p>
+                </div>
+                <div class="battle-badge">
+                    <span>Em breve</span>
+                    <strong>Modo batalha</strong>
+                </div>
+            </header>
+
+            <div class="game-stats" aria-label="Status da partida">
+                <article>
+                    <span>Tempo</span>
+                    <strong id="time-left">30s</strong>
+                </article>
+                <article>
+                    <span>Pontos</span>
+                    <strong id="score">0</strong>
+                </article>
+                <article>
+                    <span>Sequência</span>
+                    <strong id="streak">0</strong>
+                </article>
+            </div>
+
+            <section class="challenge-card" aria-live="polite">
+                <div class="challenge-meta">
+                    <span id="level-label">Nível 1</span>
+                    <span id="feedback">Pronto para começar?</span>
+                </div>
+                <div id="question" class="question">?</div>
+                <form id="answer-form" class="answer-form">
+                    <label for="answer">Resposta</label>
+                    <div>
+                        <input type="number" id="answer" name="answer" inputmode="numeric" autocomplete="off" disabled>
+                        <button type="submit" disabled>Responder</button>
+                    </div>
+                </form>
+            </section>
+
+            <div class="game-actions">
+                <button id="start-game" type="button">Começar partida</button>
+                <button id="reset-game" type="button" class="secondary" disabled>Reiniciar</button>
+            </div>
+        </section>
+
+        <aside class="ranking-panel" aria-labelledby="ranking-title">
+            <div>
+                <p class="eyebrow">Competição local</p>
+                <h2 id="ranking-title">Ranking</h2>
+                <p>As melhores pontuações ficam salvas neste navegador. Quando o modo batalha chegar, esta área já vira a base do placar competitivo.</p>
+            </div>
+            <div id="ranking-list" class="ranking-list"></div>
+            <section class="battle-preview">
+                <h3>Próxima evolução</h3>
+                <p>Partidas entre jogadores, ranking por quiz e por modo infinito, salas privadas e disputas por tempo.</p>
+            </section>
+        </aside>
+    </main>
+
+    <script src="../auth.js"></script>
+    <script src="matematica-infinita.js"></script>
+</body>
+</html>

@@ -491,6 +491,45 @@ body {
   font-weight: 700;
 }
 
+.quiz-ranking {
+  display: grid;
+  gap: 8px;
+  max-width: 420px;
+  margin: 0 auto 22px;
+  text-align: left;
+}
+
+.quiz-ranking h4 {
+  color: #fff;
+  text-align: center;
+}
+
+.quiz-ranking article {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+}
+
+.quiz-ranking span {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(99,102,241,0.18);
+  color: #a5b4fc;
+  font-weight: 900;
+}
+
+.quiz-ranking b {
+  color: #fbbf24;
+}
+
 /* ─── ANIMAÇÕES ─── */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }

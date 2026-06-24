@@ -1,6 +1,8 @@
 window.BitAcademyAuth = (() => {
   const USERS_KEY = "bitacademy.users";
   const SESSION_KEY = "bitacademy.session";
+  const QUIZ_SCORES_KEY = "bitacademy.quizScores";
+  const GAME_SCORES_KEY = "bitacademy.gameScores";
 
   const readJson = (key, fallback) => {
     try {
@@ -15,6 +17,11 @@ window.BitAcademyAuth = (() => {
   };
 
   const normalize = (value) => value.trim().toLowerCase();
+  const getRelativePrefix = () => {
+    const path = window.location.pathname;
+    return path.includes("/Quiz/") || path.includes("/Jogos/") ? "../" : "";
+  };
+
   const createId = () => {
     if (window.crypto && typeof window.crypto.randomUUID === "function") {
       return window.crypto.randomUUID();
@@ -87,29 +94,47 @@ window.BitAcademyAuth = (() => {
 
   const logout = () => {
     localStorage.removeItem(SESSION_KEY);
-    window.location.href = "login.html";
+    window.location.href = `${getRelativePrefix()}login.html`;
   };
 
   const recordQuizResult = ({ materia, titulo, score, total, percent }) => {
     const currentUser = getCurrentUser();
-    if (!currentUser) return;
-
-    const users = getUsers();
-    const userIndex = users.findIndex((user) => user.id === currentUser.id);
-    if (userIndex < 0) return;
-
-    users[userIndex].quizResults = users[userIndex].quizResults || [];
-    users[userIndex].quizResults.unshift({
+    const quizEntry = {
+      id: createId(),
       materia,
       titulo,
       score,
       total,
       percent,
+      userId: currentUser?.id || null,
+      playerName: currentUser?.name || "Visitante",
       date: new Date().toISOString()
-    });
+    };
 
-    users[userIndex].quizResults = users[userIndex].quizResults.slice(0, 20);
-    saveUsers(users);
+    const quizScores = readJson(QUIZ_SCORES_KEY, []);
+    quizScores.push(quizEntry);
+    quizScores.sort((a, b) => b.percent - a.percent || b.score - a.score);
+    saveJson(QUIZ_SCORES_KEY, quizScores.slice(0, 150));
+
+    if (currentUser) {
+      const users = getUsers();
+      const userIndex = users.findIndex((user) => user.id === currentUser.id);
+      if (userIndex >= 0) {
+        users[userIndex].quizResults = users[userIndex].quizResults || [];
+        users[userIndex].quizResults.unshift(quizEntry);
+        users[userIndex].quizResults = users[userIndex].quizResults.slice(0, 20);
+        saveUsers(users);
+      }
+    }
+
+    return quizEntry;
+  };
+
+  const getQuizRanking = (materia, limit = 10) => {
+    return readJson(QUIZ_SCORES_KEY, [])
+      .filter((score) => score.materia === materia)
+      .sort((a, b) => b.percent - a.percent || b.score - a.score)
+      .slice(0, limit);
   };
 
   const getProgress = () => {
@@ -118,18 +143,64 @@ window.BitAcademyAuth = (() => {
     return currentUser.quizResults || [];
   };
 
+  const getGameScores = () => readJson(GAME_SCORES_KEY, []);
+
+  const saveGameScores = (scores) => {
+    saveJson(GAME_SCORES_KEY, scores);
+  };
+
+  const recordGameScore = ({ mode, title, score, correct, wrong, bestStreak, duration }) => {
+    const currentUser = getCurrentUser();
+    const scores = getGameScores();
+    const entry = {
+      id: createId(),
+      mode,
+      title,
+      score,
+      correct,
+      wrong,
+      bestStreak,
+      duration,
+      userId: currentUser?.id || null,
+      playerName: currentUser?.name || "Visitante",
+      date: new Date().toISOString()
+    };
+
+    scores.push(entry);
+    scores.sort((a, b) => b.score - a.score || b.correct - a.correct);
+    saveGameScores(scores.slice(0, 100));
+    return entry;
+  };
+
+  const getGameRanking = (mode, limit = 10) => {
+    return getGameScores()
+      .filter((score) => score.mode === mode)
+      .sort((a, b) => b.score - a.score || b.correct - a.correct)
+      .slice(0, limit);
+  };
+
+  const getUserGameScores = () => {
+    const currentUser = getCurrentUser();
+    if (!currentUser) return [];
+
+    return getGameScores()
+      .filter((score) => score.userId === currentUser.id)
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
+  };
+
   const renderAuthStatus = () => {
     document.querySelectorAll("[data-auth-status]").forEach((container) => {
       const user = getCurrentUser();
+      const prefix = getRelativePrefix();
 
       if (!user) {
-        container.innerHTML = '<a href="login.html">Entrar</a>';
+        container.innerHTML = `<a href="${prefix}login.html">Entrar</a>`;
         return;
       }
 
       const firstName = escapeHtml(user.name.split(" ")[0]);
       container.innerHTML = `
-        <a href="perfil.html">Olá, ${firstName}</a>
+        <a href="${prefix}perfil.html">Olá, ${firstName}</a>
         <button type="button" data-auth-logout>Sair</button>
       `;
     });
@@ -146,8 +217,12 @@ window.BitAcademyAuth = (() => {
     }
 
     const results = getProgress();
+    const gameScores = getUserGameScores();
     const bestPercent = results.length
       ? Math.max(...results.map((result) => result.percent))
+      : 0;
+    const bestGameScore = gameScores.length
+      ? Math.max(...gameScores.map((result) => result.score))
       : 0;
     const average = results.length
       ? Math.round(results.reduce((sum, result) => sum + result.percent, 0) / results.length)
@@ -177,13 +252,17 @@ window.BitAcademyAuth = (() => {
             <span>Melhor resultado</span>
             <strong>${bestPercent}%</strong>
           </article>
+          <article>
+            <span>Recorde infinito</span>
+            <strong>${bestGameScore}</strong>
+          </article>
         </div>
 
         <div class="profile-next-step">
           <p class="eyebrow">Próximo passo</p>
           <h2>${results.length ? "Revise uma nova disciplina" : "Faça seu primeiro quiz"}</h2>
           <p>${results.length ? "Escolha outra matéria para ampliar seu histórico de desempenho." : "Ao finalizar um quiz logado, o resultado aparece automaticamente aqui."}</p>
-          <a class="secondary-link" href="Quiz/quiz-matematica.html">Abrir quiz</a>
+          <a class="secondary-link" href="Jogos/matematica-infinita.html">Jogar modo infinito</a>
         </div>
       </section>
 
@@ -291,7 +370,10 @@ window.BitAcademyAuth = (() => {
 
   return {
     getCurrentUser,
+    getGameRanking,
     getProgress,
+    getQuizRanking,
+    recordGameScore,
     login,
     logout,
     recordQuizResult,

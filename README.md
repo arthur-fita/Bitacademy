@@ -38,6 +38,7 @@ O portal conta com conteúdos nas seguintes áreas:
 
 * 📄 Páginas dedicadas para cada matéria
 * 🧪 Quizzes interativos para fixação de conteúdo
+* ⏱ Modo Matemática Infinita com tempo, pontuação e ranking local
 * 👤 Cadastro e login de usuários no navegador
 * 📊 Perfil com histórico e progresso dos quizzes
 * 📱 Layout responsivo (adaptado para diferentes dispositivos)
@@ -91,6 +92,7 @@ Projeto desenvolvido por:
 
 ## 💡 Possíveis Melhorias Futuras
 
+* Modo batalha para quizzes e jogos com ranking online
 * Integração com banco de dados real para usuários e resultados
 * Recuperação de senha e gerenciamento de turmas
 * Expansão das disciplinas e conteúdos
