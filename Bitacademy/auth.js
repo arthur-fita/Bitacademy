@@ -355,6 +355,91 @@ window.BitAcademyAuth = (() => {
     });
   };
 
+  const bindSubjectExperience = () => {
+    const page = document.body;
+    if (!page.classList.contains("subject-page")) return;
+
+    const header = document.querySelector("header");
+    const nav = document.querySelector("nav");
+    const main = document.querySelector("main");
+    const intro = document.getElementById("introducao");
+    if (!header || !nav || !main || !intro) return;
+
+    const title = page.dataset.subjectTitle || "Disciplina";
+    const icon = page.dataset.subjectIcon || "📘";
+    const area = page.dataset.subjectArea || "Trilha de estudo";
+    const accent = page.dataset.subjectAccent || "#6366f1";
+    const quizHref = page.dataset.subjectQuiz || "#";
+    const topicLinks = Array.from(nav.querySelectorAll("a[href^='#']")).slice(0, 3);
+    const firstTopicHref = topicLinks[0]?.getAttribute("href") || "#introducao";
+
+    page.style.setProperty("--subject-accent", accent);
+    header.classList.add("subject-hero");
+    nav.classList.add("subject-nav");
+    main.classList.add("subject-main");
+
+    nav.childNodes.forEach((node) => {
+      if (node.nodeType === Node.TEXT_NODE && node.textContent.includes("|")) {
+        node.textContent = " ";
+      }
+    });
+
+    if (!header.querySelector(".subject-visual")) {
+      header.insertAdjacentHTML("beforeend", `
+        <div class="subject-visual" aria-hidden="true">
+          <div class="visual-card main">
+            <span>${icon}</span>
+            <strong>${escapeHtml(title)}</strong>
+            <small>${escapeHtml(area)}</small>
+          </div>
+          <div class="visual-card mini top">${topicLinks[0] ? escapeHtml(topicLinks[0].textContent) : "Conceitos"}</div>
+          <div class="visual-card mini middle">${topicLinks[1] ? escapeHtml(topicLinks[1].textContent) : "Exemplos"}</div>
+          <div class="visual-card mini bottom">${topicLinks[2] ? escapeHtml(topicLinks[2].textContent) : "Prática"}</div>
+        </div>
+      `);
+    }
+
+    if (!document.querySelector(".subject-path")) {
+      intro.insertAdjacentHTML("afterend", `
+        <section class="subject-path" aria-label="Trilha sugerida">
+          <article>
+            <span>1</span>
+            <div>
+              <strong>Entenda a base</strong>
+              <p>Leia a introdução para saber por que esta matéria importa.</p>
+            </div>
+            <a href="#introducao">Abrir</a>
+          </article>
+          <article>
+            <span>2</span>
+            <div>
+              <strong>Explore os tópicos</strong>
+              <p>Avance pelos assuntos principais em uma ordem mais clara.</p>
+            </div>
+            <a href="${firstTopicHref}">Ver tópicos</a>
+          </article>
+          <article>
+            <span>3</span>
+            <div>
+              <strong>Pratique</strong>
+              <p>Finalize com quiz ou jogo para testar sua retenção.</p>
+            </div>
+            <a href="${quizHref}">Praticar</a>
+          </article>
+        </section>
+      `);
+    }
+
+    Array.from(main.querySelectorAll("section")).forEach((section) => {
+      const isSpecialSection = section.classList.contains("subject-path")
+        || section.classList.contains("math-game-callout");
+
+      if (section.id !== "introducao" && !isSpecialSection) {
+        section.classList.add("subject-topic");
+      }
+    });
+  };
+
   document.addEventListener("click", (event) => {
     if (event.target.matches("[data-auth-logout]")) {
       logout();
@@ -364,6 +449,7 @@ window.BitAcademyAuth = (() => {
   document.addEventListener("DOMContentLoaded", () => {
     bindLoginPage();
     bindHomeTabs();
+    bindSubjectExperience();
     renderAuthStatus();
     renderProfile();
   });
