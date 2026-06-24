@@ -17,18 +17,19 @@
                 </div>
             </div>
 
-            <form class="login-form" action="Bitacademy.html">
-                <label for="tipo">Tipo de conta</label>
-                <select id="tipo" name="tipo">
-                    <option>Aluno</option>
-                    <option>Professor</option>
-                </select>
+            <div class="auth-tabs" role="tablist" aria-label="Acesso de usuários">
+                <button type="button" class="active" data-auth-tab="login">Entrar</button>
+                <button type="button" data-auth-tab="cadastro">Cadastrar</button>
+            </div>
 
-                <label for="email">E-mail ou usuário</label>
-                <input type="text" id="email" name="email" placeholder="seunome@escola.com" required>
+            <p class="form-message" data-auth-message aria-live="polite"></p>
 
-                <label for="senha">Senha</label>
-                <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+            <form class="login-form" data-login-form data-auth-panel="login">
+                <label for="login-email">E-mail</label>
+                <input type="email" id="login-email" name="email" placeholder="seunome@escola.com" required>
+
+                <label for="login-senha">Senha</label>
+                <input type="password" id="login-senha" name="senha" placeholder="Digite sua senha" required>
 
                 <div class="login-options">
                     <label class="check-option">
@@ -40,11 +41,30 @@
 
                 <button type="submit">Entrar</button>
             </form>
+
+            <form class="login-form" data-register-form data-auth-panel="cadastro" hidden>
+                <label for="cadastro-nome">Nome completo</label>
+                <input type="text" id="cadastro-nome" name="nome" placeholder="Seu nome" required>
+
+                <label for="cadastro-tipo">Tipo de conta</label>
+                <select id="cadastro-tipo" name="tipo">
+                    <option>Aluno</option>
+                    <option>Professor</option>
+                </select>
+
+                <label for="cadastro-email">E-mail</label>
+                <input type="email" id="cadastro-email" name="email" placeholder="seunome@escola.com" required>
+
+                <label for="cadastro-senha">Senha</label>
+                <input type="password" id="cadastro-senha" name="senha" placeholder="Mínimo de 6 caracteres" minlength="6" required>
+
+                <button type="submit">Criar conta</button>
+            </form>
         </section>
 
         <aside class="access-panel" aria-label="Informações sobre o acesso">
             <h2>Um acesso para aprender e ensinar</h2>
-            <p>Alunos entram para estudar conteúdos e responder quizzes. Professores, futuramente, poderão acompanhar turmas, atividades e desempenho dos estudantes.</p>
+            <p>Alunos entram para estudar conteúdos e responder quizzes. Professores podem testar o mesmo acesso e acompanhar a base preparada para futuras turmas.</p>
             <ul>
                 <li>Ambiente simples para estudantes</li>
                 <li>Preparado para o modo professor</li>
@@ -52,5 +72,6 @@
             </ul>
         </aside>
     </main>
+    <script src="auth.js"></script>
 </body>
 </html>

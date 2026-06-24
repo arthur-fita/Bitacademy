@@ -6,130 +6,200 @@
     <title>Bitacademy</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <header>
-        <h1>Bem-vindo ao BitAcademy</h1>
-        <p>Seu portal de aprendizado</p>
+<body class="home-page">
+    <header class="home-topbar">
+        <a class="brand-link" href="Bitacademy.html" aria-label="BitAcademy página inicial">
+            <span class="brand-mark">BA</span>
+            <strong>BitAcademy</strong>
+        </a>
+        <nav class="home-nav" aria-label="Navegação principal">
+            <a href="#trilhas">Trilhas</a>
+            <a href="#disciplinas">Disciplinas</a>
+            <a href="#quizzes">Quizzes</a>
+            <a href="sobre-mim.html">Equipe</a>
+            <span data-auth-status><a href="login.html">Entrar</a></span>
+        </nav>
     </header>
-    <nav>
-        <a href="login.html">Entrar</a> |
-        <a href="artes.html">Artes</a> |
-        <a href="ciencias.html">Ciências</a> |
-        <a href="filosofia.html">Filosofia</a> |
-        <a href="geografia.html">Geografia</a> |
-        <a href="historia.html">História</a> |
-        <a href="ingles.html">Inglês</a> |
-        <a href="matematica.html">Matemática</a> |
-        <a href="portugues.html">Português</a> |
-        <a href="sobre-mim.html">Sobre Mim</a>
-    </nav>
-    <main>
-        <section id="introducao" class="home-intro">
-            <h2>Sobre o BitAcademy</h2>
-            <p>O Bitacademy é um portal de aprendizado criado para ajudar estudantes a explorar e dominar diferentes matérias, como Matemática, Português e Ciências. 
-            Nosso objetivo é oferecer conteúdos claros e acessíveis para facilitar o seu aprendizado e desenvolvimento. Com uma interface mais criativa e interativa, fazendo os jovens se divertirem enquanto aprendem.</p>
-            <div class="home-stats" aria-label="Resumo do portal">
-                <span><strong>8</strong> disciplinas</span>
-                <span><strong>8</strong> quizzes</span>
-                <span><strong>2</strong> perfis de acesso</span>
+
+    <main class="home-main">
+        <section id="introducao" class="learning-hero">
+            <div class="hero-copy">
+                <p class="eyebrow">Portal de aprendizado</p>
+                <h1>Estude, pratique e acompanhe sua evolução em um só lugar.</h1>
+                <p>O BitAcademy organiza disciplinas, explicações e quizzes em uma jornada simples para o estudante não se perder entre páginas soltas.</p>
+                <div class="intro-actions">
+                    <a class="primary-link" href="#trilhas">Começar estudos</a>
+                    <a class="secondary-link" href="perfil.html">Ver meu perfil</a>
+                </div>
             </div>
-            <div class="intro-actions">
-                <a class="primary-link" href="login.html">Entrar no portal</a>
-                <a class="secondary-link" href="#disciplinas">Ver disciplinas</a>
+            <figure class="hero-visual" aria-label="Painel visual de estudos">
+                <div class="study-board">
+                    <div class="board-header">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="board-row active">
+                        <b>Matemática</b>
+                        <small>Quiz disponível</small>
+                    </div>
+                    <div class="board-row">
+                        <b>Ciências</b>
+                        <small>Conteúdo guiado</small>
+                    </div>
+                    <div class="board-chart">
+                        <span style="height: 42%"></span>
+                        <span style="height: 64%"></span>
+                        <span style="height: 78%"></span>
+                        <span style="height: 52%"></span>
+                    </div>
+                </div>
+            </figure>
+        </section>
+
+        <section class="home-overview" aria-label="Resumo do portal">
+            <article>
+                <strong>8</strong>
+                <span>disciplinas organizadas</span>
+            </article>
+            <article>
+                <strong>8</strong>
+                <span>quizzes para revisar</span>
+            </article>
+            <article>
+                <strong>1</strong>
+                <span>perfil com histórico</span>
+            </article>
+        </section>
+
+        <section id="trilhas" class="tab-section">
+            <div class="section-heading">
+                <p class="eyebrow">Como usar</p>
+                <h2>Escolha o que você quer fazer agora</h2>
+                <p>As abas separam a experiência por objetivo, então o estudante encontra o próximo passo sem precisar adivinhar.</p>
+            </div>
+
+            <div class="learning-tabs" role="tablist" aria-label="Modos de uso do portal">
+                <button type="button" class="active" data-home-tab="estudar">Estudar</button>
+                <button type="button" data-home-tab="praticar">Praticar</button>
+                <button type="button" data-home-tab="acompanhar">Acompanhar</button>
+            </div>
+
+            <div class="tab-panels">
+                <article class="tab-panel active" data-home-panel="estudar">
+                    <div>
+                        <h3>Conteúdo por disciplina</h3>
+                        <p>Comece por uma matéria, leia os tópicos principais e avance para o quiz quando sentir segurança.</p>
+                        <a class="secondary-link" href="#disciplinas">Explorar matérias</a>
+                    </div>
+                    <div class="panel-visual subject-preview" aria-hidden="true">
+                        <span>Português</span>
+                        <span>História</span>
+                        <span>Geografia</span>
+                    </div>
+                </article>
+
+                <article class="tab-panel" data-home-panel="praticar" hidden>
+                    <div>
+                        <h3>Quizzes de fixação</h3>
+                        <p>Responda perguntas rápidas, receba feedback imediato e identifique quais assuntos merecem revisão.</p>
+                        <a class="secondary-link" href="#quizzes">Ver quizzes</a>
+                    </div>
+                    <div class="panel-visual quiz-preview" aria-hidden="true">
+                        <b>3/5</b>
+                        <span>resultado exemplo</span>
+                    </div>
+                </article>
+
+                <article class="tab-panel" data-home-panel="acompanhar" hidden>
+                    <div>
+                        <h3>Perfil do estudante</h3>
+                        <p>Ao entrar com uma conta, os resultados ficam salvos para o usuário comparar tentativas e acompanhar progresso.</p>
+                        <a class="secondary-link" href="perfil.html">Abrir perfil</a>
+                    </div>
+                    <div class="panel-visual progress-preview" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <section id="como-comecar">
-            <h2>Comece por aqui</h2>
-            <div class="steps-grid">
-                <article>
-                    <span class="step-icon">1</span>
-                    <h3>Escolha uma matéria</h3>
-                    <p>Navegue pelas disciplinas disponíveis e encontre o conteúdo que quer revisar.</p>
-                </article>
-                <article>
-                    <span class="step-icon">2</span>
-                    <h3>Estude o conteúdo</h3>
-                    <p>Leia explicações diretas, organizadas por temas importantes de cada área.</p>
-                </article>
-                <article>
-                    <span class="step-icon">3</span>
-                    <h3>Faça um quiz</h3>
-                    <p>Teste seus conhecimentos e veja quais pontos precisam de mais atenção.</p>
-                </article>
+        <section id="disciplinas" class="subjects-section">
+            <div class="section-heading">
+                <p class="eyebrow">Biblioteca</p>
+                <h2>Disciplinas disponíveis</h2>
+                <p>Cada área tem uma página própria com explicações e um caminho direto para praticar.</p>
             </div>
-        </section>
 
-        <section id="disciplinas">
-            <h2>Disciplinas disponíveis</h2>
             <div class="subject-grid">
-                <a class="subject-card" href="artes.html">
+                <article class="subject-card">
                     <span class="subject-icon">🎨</span>
                     <strong>Artes</strong>
                     <span>Expressão, movimentos artísticos e criatividade.</span>
-                </a>
-                <a class="subject-card" href="ciencias.html">
+                    <a href="artes.html">Estudar</a>
+                </article>
+                <article class="subject-card">
                     <span class="subject-icon">🔬</span>
                     <strong>Ciências</strong>
                     <span>Natureza, corpo humano, química e fenômenos físicos.</span>
-                </a>
-                <a class="subject-card" href="filosofia.html">
+                    <a href="ciencias.html">Estudar</a>
+                </article>
+                <article class="subject-card">
                     <span class="subject-icon">💭</span>
                     <strong>Filosofia</strong>
                     <span>Pensamento crítico, ética e grandes questões humanas.</span>
-                </a>
-                <a class="subject-card" href="geografia.html">
+                    <a href="filosofia.html">Estudar</a>
+                </article>
+                <article class="subject-card">
                     <span class="subject-icon">🌎</span>
                     <strong>Geografia</strong>
                     <span>Espaço geográfico, clima, relevo e sociedade.</span>
-                </a>
-                <a class="subject-card" href="historia.html">
+                    <a href="geografia.html">Estudar</a>
+                </article>
+                <article class="subject-card">
                     <span class="subject-icon">📜</span>
                     <strong>História</strong>
                     <span>Processos, eventos e transformações da humanidade.</span>
-                </a>
-                <a class="subject-card" href="ingles.html">
+                    <a href="historia.html">Estudar</a>
+                </article>
+                <article class="subject-card">
                     <span class="subject-icon">🗣</span>
                     <strong>Inglês</strong>
                     <span>Gramática, vocabulário e comunicação em outro idioma.</span>
-                </a>
-                <a class="subject-card" href="matematica.html">
+                    <a href="ingles.html">Estudar</a>
+                </article>
+                <article class="subject-card">
                     <span class="subject-icon">➗</span>
                     <strong>Matemática</strong>
                     <span>Números, lógica, álgebra, geometria e estatística.</span>
-                </a>
-                <a class="subject-card" href="portugues.html">
+                    <a href="matematica.html">Estudar</a>
+                </article>
+                <article class="subject-card">
                     <span class="subject-icon">📚</span>
                     <strong>Português</strong>
                     <span>Leitura, escrita, gramática e interpretação de textos.</span>
-                </a>
+                    <a href="portugues.html">Estudar</a>
+                </article>
             </div>
         </section>
 
         <section id="quizzes" class="quiz-callout">
             <div>
+                <p class="eyebrow">Prática rápida</p>
                 <h2>Teste o que você aprendeu</h2>
-                <p>Os quizzes ajudam a revisar o conteúdo de forma rápida e mostram onde vale estudar mais um pouco.</p>
+                <p>Os quizzes ajudam a revisar o conteúdo e salvam resultados no perfil quando o usuário está logado.</p>
             </div>
-            <a class="primary-link" href="Quiz/quiz-matematica.html">Abrir um quiz</a>
-        </section>
-
-        <section id="perfis">
-            <h2>Feito para alunos e professores</h2>
-            <div class="profile-grid">
-                <article>
-                    <h3>Aluno</h3>
-                    <p>Acesse matérias, revise conteúdos e pratique com quizzes de fixação.</p>
-                </article>
-                <article>
-                    <h3>Professor</h3>
-                    <p>Em breve, acompanhe turmas, atividades e desempenho dos estudantes.</p>
-                </article>
+            <div class="quiz-actions">
+                <a class="primary-link" href="Quiz/quiz-matematica.html">Abrir quiz</a>
+                <a class="secondary-link" href="login.html">Criar conta</a>
             </div>
         </section>
     </main>
     <footer>
         <p>&copy; 2026 BitAcademy. Todos os direitos reservados.</p>
     </footer>
+    <script src="auth.js"></script>
 </body>
 </html>

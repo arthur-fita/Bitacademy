@@ -367,12 +367,22 @@ class QuizUI {
     const total = this.engine.perguntas.length;
     const score = this.engine.pontuacao;
     const percent = Math.round((score / total) * 100);
+    const user = window.BitAcademyAuth?.getCurrentUser();
+
+    window.BitAcademyAuth?.recordQuizResult({
+      materia: this.engine.materiaInfo.titulo.toLowerCase(),
+      titulo: this.engine.materiaInfo.titulo,
+      score,
+      total,
+      percent
+    });
 
     this.container.innerHTML = `
       <div class="result-card">
         <div class="score-circle">${score}/${total}</div>
         <h3>${percent >= 70 ? "Ótimo desempenho!" : "Bom esforço!"}</h3>
         <p>Você acertou ${percent}% das questões.</p>
+        <p>${user ? "Resultado salvo no seu perfil." : "Entre ou cadastre-se para salvar seus resultados."}</p>
         <button onclick="location.reload()" class="btn-primary">Tentar novamente</button>
         <a href="../Bitacademy.html" class="btn-secondary">Voltar ao portal</a>
       </div>

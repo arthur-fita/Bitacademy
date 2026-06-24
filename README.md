@@ -38,6 +38,8 @@ O portal conta com conteúdos nas seguintes áreas:
 
 * 📄 Páginas dedicadas para cada matéria
 * 🧪 Quizzes interativos para fixação de conteúdo
+* 👤 Cadastro e login de usuários no navegador
+* 📊 Perfil com histórico e progresso dos quizzes
 * 📱 Layout responsivo (adaptado para diferentes dispositivos)
 * 🧭 Navegação simples e intuitiva
 
@@ -83,15 +85,14 @@ Projeto desenvolvido por:
 
 ## 📌 Status do Projeto
 
-🚧 Em desenvolvimento — novas funcionalidades e melhorias podem ser adicionadas.
+🚧 Em desenvolvimento — o portal já possui navegação, quizzes, cadastro/login local e acompanhamento básico de progresso.
 
 ---
 
 ## 💡 Possíveis Melhorias Futuras
 
-* Sistema de login e cadastro de usuários
-* Progresso de aprendizado individual
-* Banco de dados para armazenamento de resultados
+* Integração com banco de dados real para usuários e resultados
+* Recuperação de senha e gerenciamento de turmas
 * Expansão das disciplinas e conteúdos
 
 ---
