@@ -71,7 +71,7 @@ Projeto desenvolvido por:
 1. Clone este repositório:
 
    ```bash
-   git clone https://github.com/seu-repositorio/bitacademy.git
+   git clone https://github.com/arthur-fita/bitacademy.git
    ```
 
 2. Acesse a pasta do projeto:
